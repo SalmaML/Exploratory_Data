@@ -16,11 +16,8 @@ readkey <- function() {
 print( "Load file...")
 
 #Load the dataframe
-col_names <- read.table('household_power_consumption.txt', nrows = 1, header = FALSE, sep =';', stringsAsFactors = FALSE)
+df <- read.table("household_power_consumption.txt", header=TRUE, sep=";", stringsAsFactors=FALSE, dec=".")
 
-df <- read.table("household_power_consumption.txt", skip = 1, header = FALSE, sep =';')
-
-colnames( df) <- unlist(col_names)
 
 print( "Change the format date..." )
 
@@ -31,8 +28,7 @@ class(df$Date)
 print( "Subsetting...")
 df1 <- df[df$Date>=as.Date('2007-02-01') & df$Date<=as.Date('2007-02-02'),];
 
-#Making Plots
-
+#Making Plots:
 # Plot-1: Global Active Power
 Plot1(df1)
 readkey()
